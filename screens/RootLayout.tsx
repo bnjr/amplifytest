@@ -12,7 +12,7 @@ import {
 } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { textStyles } from "../styles/textStyles";
-import { buttonStyles } from "../styles/buttonStyles";
+import { buttonStyles, fabHeight } from "../styles/buttonStyles";
 import { imageStyles, iconSize } from "../styles/imageStyles";
 import { containerStyles } from "../styles/containerStyles";
 
@@ -28,9 +28,6 @@ import { listTodos } from "../src/graphql/queries";
 // retrieves only the current value of 'user' from 'useAuthenticator'
 
 const userSelector = (context) => [context.user];
-
-const BOTTOM_APPBAR_HEIGHT = 80;
-const MEDIUM_FAB_HEIGHT = 56;
 
 const SignOutButton = () => {
   const { user, signOut } = useAuthenticator(userSelector);
@@ -49,6 +46,7 @@ const client = generateClient();
 export const RootLayout = () => {
   const [formState, setFormState] = useState(initialState);
   const [todos, setTodos] = useState([]);
+  const { top } = useSafeAreaInsets();
   const { bottom } = useSafeAreaInsets();
   const theme = useTheme();
 
@@ -90,9 +88,12 @@ export const RootLayout = () => {
   }
 
   return (
-    <SafeAreaView style={containerStyles.screen}>
+    <SafeAreaView style={containerStyles.fullscreen}>
       {/* <SignOutButton /> */}
-      <Appbar.Header>
+      <Appbar.Header
+        style={containerStyles.topAppbar}
+        safeAreaInsets={{ top }}
+      >
         <Appbar.BackAction onPress={() => {}} />
         <Appbar.Content title="Title" />
         <Appbar.Action
@@ -106,67 +107,62 @@ export const RootLayout = () => {
         />
         <Appbar.Action icon="magnify" onPress={() => {}} />
       </Appbar.Header>
-      <TextInput
-        onChangeText={(value) => setInput("name", value)}
-        style={textStyles.inputText}
-        label="Name"
-        value={formState.name}
-        mode="outlined"
-        placeholder="Type here"
-      />
-      <TextInput
-        onChangeText={(value) => setInput("description", value)}
-        style={textStyles.inputText}
-        mode="outlined"
-        label="Description"
-        value={formState.description}
-        placeholder="Type here"
-      />
-      <Button
-        onPress={addTodo}
-        mode="elevated"
-        style={buttonStyles.buttonContainer}
-      >
-        <Text style={textStyles.buttonText}>Create todo</Text>
-      </Button>
-      <View style={containerStyles.column}>
-        {todos.map((todo, index) => (
-          <View key={todo.id ? todo.id : index} style={containerStyles.row}>
-            <Avatar.Icon size={iconSize} icon="folder" />
-            <Text style={textStyles.todoName}>{todo.name}</Text>
-            <Text style={textStyles.todoDescription}>{todo.description}</Text>
-            <Avatar.Image
-              style={imageStyles.icon}
-              size={iconSize}
-              source={require("../assets/images/aryaman.jpg")}
-            />
-            <Avatar.Text style={imageStyles.icon} size={iconSize} label="AB" />
-          </View>
-        ))}
+      <View style={containerStyles.usablescreen}>
+        <TextInput
+          onChangeText={(value) => setInput("name", value)}
+          style={textStyles.inputText}
+          label="Name"
+          value={formState.name}
+          mode="outlined"
+          placeholder="Type here"
+        />
+        <TextInput
+          onChangeText={(value) => setInput("description", value)}
+          style={textStyles.inputText}
+          mode="outlined"
+          label="Description"
+          value={formState.description}
+          placeholder="Type here"
+        />
+        <Button
+          onPress={addTodo}
+          mode="elevated"
+          style={buttonStyles.buttonContainer}
+        >
+          <Text style={textStyles.buttonText}>Create todo</Text>
+        </Button>
+        <View style={containerStyles.body}>
+          {todos.map((todo, index) => (
+            <View key={todo.id ? todo.id : index} style={containerStyles.row}>
+              <Avatar.Icon size={iconSize} icon="folder" />
+              <Text style={textStyles.todoName}>{todo.name}</Text>
+              <Text style={textStyles.todoDescription}>{todo.description}</Text>
+              <Avatar.Image
+                style={imageStyles.icon}
+                size={iconSize}
+                source={require("../assets/images/aryaman.jpg")}
+              />
+              <Avatar.Text
+                style={imageStyles.icon}
+                size={iconSize}
+                label="AB"
+              />
+            </View>
+          ))}
+        </View>
       </View>
-      <Appbar
-        style={[
-          containerStyles.bottom,
-          {
-            height: BOTTOM_APPBAR_HEIGHT + bottom,
-            backgroundColor: theme.colors.elevation.level2,
-          },
-        ]}
-        safeAreaInsets={{ bottom }}
-      >
+      <Appbar style={containerStyles.bottomAppbar} safeAreaInsets={{ bottom }}>
         <Appbar.Action icon="archive" onPress={() => {}} />
         <Appbar.Action icon="email" onPress={() => {}} />
         <Appbar.Action icon="label" onPress={() => {}} />
         <Appbar.Action icon="delete" onPress={() => {}} />
         <FAB
-          mode="flat"
-          size="medium"
+          mode="elevated"
+          size="small"
           icon="plus"
           onPress={() => {}}
-          style={[
-            buttonStyles.fab,
-            { top: (BOTTOM_APPBAR_HEIGHT - MEDIUM_FAB_HEIGHT) / 2 },
-          ]}
+          style={buttonStyles.fab}
+          color="white"
         />
       </Appbar>
     </SafeAreaView>

@@ -1,8 +1,38 @@
 import { StyleSheet } from "react-native";
+import { myTheme } from "./themes/grey";
 export const containerStyles = StyleSheet.create({
-  screen: {
+  fullscreen: {
     flex: 1,
-    padding: 20,
+  },
+  usablescreen: {
+    flex: 1,
+    padding: 10,
+  },
+  topAppbar: {
+    //position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    padding: 10,
+    height: 60,
+    alignItems: "center",
+    justifyContent: "left",
+    backgroundColor: myTheme.colors.primaryContainer,
+  },
+  body: {
+    justifyContent: "left",
+    overflow: "hidden",
+  },
+  bottomAppbar: {
+    //position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    padding: 10,
+    height: 60,
+    alignItems: "center",
+    justifyContent: "left",
+    backgroundColor: myTheme.colors.primaryContainer,
   },
   row: {
     flexDirection: "row",
@@ -13,11 +43,5 @@ export const containerStyles = StyleSheet.create({
     justifyContent: "flex-start",
     flexDirection: "column",
     margin: 1,
-  },
-  bottom: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
 });

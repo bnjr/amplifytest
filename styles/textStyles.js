@@ -15,11 +15,11 @@ export const textStyles = StyleSheet.create({
     fontSize: textmid,
     alignSelf: "center",
     fontWeight: "bold",
-    marginLeft: 5,
+    marginHorizontal: 5,
   },
   todoDescription: {
     fontSize: textsm,
     alignSelf: "center",
-    marginLeft: 5,
+    marginHorizontal: 5,
   },
 });
