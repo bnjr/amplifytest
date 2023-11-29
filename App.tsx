@@ -5,15 +5,18 @@ Amplify.configure(amplifyconfig);
 
 import ThemeProvider from "./styles/ThemeProvider";
 import { RootLayout } from "./screens/RootLayout";
+import { DataProvider } from "./context/Context";
 
 // retrieves only the current value of 'user' from 'useAuthenticator'
 // const userSelector = (context) => [context.user];
 
 const App = () => {
   return (
-    <ThemeProvider>
-      <RootLayout />
-    </ThemeProvider>
+    <DataProvider>
+      <ThemeProvider>
+        <RootLayout />
+      </ThemeProvider>
+    </DataProvider>
   );
 };
 
