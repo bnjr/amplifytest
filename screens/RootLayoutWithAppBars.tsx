@@ -18,7 +18,7 @@ import { containerStyles } from "../styles/containerStyles";
 
 import { DataContext } from "../context/Context";
 
-export const RootLayout = ({ navigation}) => {
+export const RootLayout = ({ navigation }) => {
   //const [todos, setTodos] = useState([]);
   const { todos, addTodo } = useContext(DataContext);
 
@@ -35,6 +35,21 @@ export const RootLayout = ({ navigation}) => {
 
   return (
     <SafeAreaView style={containerStyles.fullscreen}>
+      {/* <SignOutButton /> */}
+      <Appbar.Header style={containerStyles.topAppbar} safeAreaInsets={{ top }}>
+        <Appbar.BackAction onPress={() => navigation.navigate("Details")} />
+        <Appbar.Content title="Title" />
+        <Appbar.Action
+          icon="compass"
+          color="blue"
+          size={iconSize}
+          onPress={() => {
+            console.log("pressed calendar");
+            navigation.navigate("Details");
+          }}
+        />
+        <Appbar.Action icon="magnify" onPress={() => {}} />
+      </Appbar.Header>
       <View style={containerStyles.usablescreen}>
         <TextInput
           onChangeText={(value) => setInput("name", value)}
@@ -55,7 +70,7 @@ export const RootLayout = ({ navigation}) => {
         <Button
           onPress={() => {
             addTodo(formState);
-            setFormState( initialState );
+            setFormState(initialState);
           }}
           mode="elevated"
           style={buttonStyles.buttonContainer}
@@ -66,16 +81,39 @@ export const RootLayout = ({ navigation}) => {
           {todos &&
             todos.map((todo, index) => (
               <View key={todo.id ? todo.id : index} style={containerStyles.row}>
-                <Avatar.Icon size={iconSize} icon="format-list-checks" />
+                <Avatar.Icon size={iconSize} icon="folder" />
                 <Text style={textStyles.todoName}>{todo.name}</Text>
                 <Text style={textStyles.todoDescription}>
                   {todo.description}
                 </Text>
+                <Avatar.Image
+                  style={imageStyles.icon}
+                  size={iconSize}
+                  source={require("../assets/images/aryaman.jpg")}
+                />
+                <Avatar.Text
+                  style={imageStyles.icon}
+                  size={iconSize}
+                  label="AB"
+                />
               </View>
             ))}
         </View>
       </View>
-
+      <Appbar style={containerStyles.bottomAppbar} safeAreaInsets={{ bottom }}>
+        <Appbar.Action icon="archive" onPress={() => {}} />
+        <Appbar.Action icon="email" onPress={() => {}} />
+        <Appbar.Action icon="label" onPress={() => {}} />
+        <Appbar.Action icon="delete" onPress={() => {}} />
+        <FAB
+          mode="elevated"
+          size="small"
+          icon="plus"
+          onPress={() => {}}
+          style={buttonStyles.fab}
+          color="white"
+        />
+      </Appbar>
     </SafeAreaView>
   );
 };

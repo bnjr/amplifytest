@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import {
   MD3LightTheme as DefaultTheme,
