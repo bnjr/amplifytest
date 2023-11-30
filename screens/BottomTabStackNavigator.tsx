@@ -34,7 +34,7 @@ function SettingsStackScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export const BottomTabStackNavigator = ()=> {
+export const BottomTabStackNavigator = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -42,13 +42,25 @@ export const BottomTabStackNavigator = ()=> {
           headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-
-            if (route.name === "Home") {
-              iconName = focused
-                ? "ios-information-circle"
-                : "ios-information-circle-outline";
-            } else if (route.name === "Settings") {
-              iconName = focused ? "ios-list" : "ios-list-outline";
+            switch (route.name) {
+              case "Feed":
+                iconName = focused
+                  ? "ios-information-circle"
+                  : "ios-information-circle-outline";
+                break;
+              case "Calls":
+                iconName = focused ? "call" : "call-outline";
+                break;
+              case "Chats":
+                iconName = focused ? "chatbox" : "chatbox-outline";
+                break;
+              case "Settings":
+                iconName = focused ? "ios-list" : "ios-list-outline";
+                break;
+              // Add additional cases for other routes as needed
+              default:
+                iconName = ""; // Default icon or some fallback
+                break;
             }
 
             // You can return any component that you like here!
@@ -58,9 +70,11 @@ export const BottomTabStackNavigator = ()=> {
           tabBarInactiveTintColor: myTheme.colors.tertiary,
         })}
       >
-        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Feed" component={SettingsStackScreen} />
+        <Tab.Screen name="Calls" component={SettingsStackScreen} />
+        <Tab.Screen name="Chats" component={HomeStackScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
-}
+};
