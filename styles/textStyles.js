@@ -10,7 +10,7 @@ export const textStyles = StyleSheet.create({
     fontSize: textsm,
     height: 30,
   },
-  buttonText: { fontSize: 18 },
+  buttonText: { fontSize: 12 },
   todoName: {
     fontSize: textmid,
     alignSelf: "center",
