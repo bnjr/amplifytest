@@ -8,6 +8,7 @@ import { DetailsScreen } from "./Details";
 import { SettingsScreen } from "./Settings";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { myTheme } from "../styles/themes/grey";
+import { ProfileScreen } from "./ProfileScreen";
 
 const HomeStack = createNativeStackNavigator();
 
@@ -26,7 +27,7 @@ function SettingsStackScreen() {
   return (
     <SettingsStack.Navigator>
       <SettingsStack.Screen name="Settings" component={SettingsScreen} />
-      <SettingsStack.Screen name="Details" component={DetailsScreen} />
+      <SettingsStack.Screen name="Profile" component={ProfileScreen} />
     </SettingsStack.Navigator>
   );
 }

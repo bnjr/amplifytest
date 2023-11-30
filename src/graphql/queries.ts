@@ -8,6 +8,44 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
+export const getProfile = /* GraphQL */ `query GetProfile($id: ID!) {
+  getProfile(id: $id) {
+    id
+    name
+    phone
+    image
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetProfileQueryVariables,
+  APITypes.GetProfileQuery
+>;
+export const listProfiles = /* GraphQL */ `query ListProfiles(
+  $filter: ModelProfileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      phone
+      image
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListProfilesQueryVariables,
+  APITypes.ListProfilesQuery
+>;
 export const getTodo = /* GraphQL */ `query GetTodo($id: ID!) {
   getTodo(id: $id) {
     id

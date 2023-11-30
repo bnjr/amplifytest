@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 import { myTheme } from "./themes/grey";
 export const buttonStyles = StyleSheet.create({
-  buttonContainer: {
+  button: {
     //padding: 1,
-    margin: 1,
-    height:40,
+    margin: 5,
+    height: 40,
+    width:200,
   },
   fab: {
     position: "absolute",

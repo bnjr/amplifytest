@@ -6,7 +6,7 @@ import {
   withAuthenticator,
   useAuthenticator,
 } from "@aws-amplify/ui-react-native";
-import { createTodo } from "../src/graphql/mutations";
+import { createTodo, deleteTodo } from "../src/graphql/mutations";
 import { listTodos } from "../src/graphql/queries";
 
 const client = generateClient();
@@ -16,9 +16,11 @@ export const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
+  const [todoUpdated, setTodoUpdated] = useState(false);
   useEffect(() => {
     fetchTodos();
-  }, []);
+    setTodoUpdated(false);
+  }, [todoUpdated]);
 
   async function fetchTodos() {
     try {
@@ -31,11 +33,13 @@ export const DataProvider = ({ children }) => {
       console.log("error fetching todos", err);
     }
   }
-    async function addTodo(formState){
+  async function addTodo(formState) {
+    setTodoUpdated(true);
+
     try {
-        if (!formState.name || !formState.description) {
-            return;
-        };
+      if (!formState.name || !formState.description) {
+        return;
+      }
       const todo = { ...formState };
       setTodos([...todos, todo]);
       await client.graphql({
@@ -48,8 +52,36 @@ export const DataProvider = ({ children }) => {
       console.log("error creating todo:", err);
     }
   }
+  async function removeTodo(killList) {
+    // Check if killList is empty and return if true
+    if (killList.length === 0) {
+      console.log("killList is empty, no todos to delete");
+      return;
+    }
+
+    try {
+      setTodoUpdated(true);
+      for (const todoId of killList) {
+        const deletedTodo = await client.graphql({
+          query: deleteTodo,
+          variables: {
+            input: {
+              id: todoId,
+            },
+          },
+        });
+        setTodos(todos.filter((id) => id != todoId));
+
+        console.log("Deleted todo:", deletedTodo.data.deleteTodo.name);
+      }
+    } catch (error) {
+      console.error("Error deleting todos:", error);
+      // Handle errors as needed
+    }
+  }
+
   return (
-    <DataContext.Provider value={{ todos, addTodo }}>
+    <DataContext.Provider value={{ todos, addTodo, removeTodo }}>
       {children}
     </DataContext.Provider>
   );

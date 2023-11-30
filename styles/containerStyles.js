@@ -5,7 +5,7 @@ export const containerStyles = StyleSheet.create({
     flex: 1,
   },
   usablescreen: {
-    flex: 1,
+    flex: 0,
     padding: 10,
   },
   topAppbar: {

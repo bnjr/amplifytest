@@ -9,6 +9,7 @@ import {
   useTheme,
   Avatar,
   Banner,
+  Checkbox,
 } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { textStyles } from "../styles/textStyles";
@@ -18,9 +19,25 @@ import { containerStyles } from "../styles/containerStyles";
 
 import { DataContext } from "../context/Context";
 
-export const RootLayout = ({ navigation}) => {
-  //const [todos, setTodos] = useState([]);
-  const { todos, addTodo } = useContext(DataContext);
+export const RootLayout = ({ navigation }) => {
+  const { todos, addTodo, removeTodo } = useContext(DataContext);
+  const [localTodos, setLocalTodos] = useState(
+    todos.map((todo) => ({ ...todo, checked: false }))
+  );
+  const [killList, setkillList] = useState([]);
+  useEffect(() => {
+    // Update localTodos whenever the todos from context change
+    setLocalTodos(todos.map((todo) => ({ ...todo, checked: false })));
+    setkillList([]);
+  }, [todos]);
+
+  useEffect(() => {
+    // Update killlist whenever the localtodos from context change
+    //console.log("-----------killist", killList);
+    //console.log("-----------localTodo");
+    //localTodos.map((i) => {console.log(i.name, i.checked);})
+    ;
+  }, [localTodos, killList]);
 
   const { top } = useSafeAreaInsets();
   const { bottom } = useSafeAreaInsets();
@@ -32,6 +49,20 @@ export const RootLayout = ({ navigation}) => {
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
   }
+
+  const toggleChecked = (todoId) => {
+    setLocalTodos(
+      localTodos.map((i) =>
+        i.id === todoId ? { ...i, checked: !i.checked } : i
+      )
+    );
+
+    if (killList.includes(todoId)) {
+      setkillList(killList.filter((id) => id !== todoId));
+    } else {
+      setkillList([...killList, todoId]);
+    }
+  };
 
   return (
     <SafeAreaView style={containerStyles.fullscreen}>
@@ -55,27 +86,45 @@ export const RootLayout = ({ navigation}) => {
         <Button
           onPress={() => {
             addTodo(formState);
-            setFormState( initialState );
+            setFormState(initialState);
           }}
           mode="elevated"
-          style={buttonStyles.buttonContainer}
+          style={buttonStyles.button}
         >
           <Text style={textStyles.buttonText}>Create todo</Text>
         </Button>
-        <View style={containerStyles.body}>
-          {todos &&
-            todos.map((todo, index) => (
-              <View key={todo.id ? todo.id : index} style={containerStyles.row}>
-                <Avatar.Icon size={iconSize} icon="format-list-checks" />
-                <Text style={textStyles.todoName}>{todo.name}</Text>
-                <Text style={textStyles.todoDescription}>
-                  {todo.description}
-                </Text>
-              </View>
-            ))}
-        </View>
       </View>
-
+      <View style={containerStyles.usablescreen}>
+        <View style={containerStyles.body}>
+          {localTodos &&
+            localTodos
+              .sort((a, b) => {
+                return a.name.localeCompare(b.name);
+              })
+              .map((i, index) => (
+                <View key={i.id ? i.id : index} style={containerStyles.row}>
+                  <Checkbox
+                    status={i.checked ? "checked" : "unchecked"}
+                    onPress={() => toggleChecked(i.id)}
+                  />
+                  <Text style={textStyles.todoName}>{i.name}</Text>
+                  <Text style={textStyles.todoDescription}>
+                    {i.description}
+                  </Text>
+                </View>
+              ))}
+        </View>
+        <Button
+          onPress={() => {
+            removeTodo(killList);
+            //setFormState(initialState);
+          }}
+          mode="elevated"
+          style={buttonStyles.button}
+        >
+          <Text style={textStyles.buttonText}>Delete todo</Text>
+        </Button>
+      </View>
     </SafeAreaView>
   );
 };
