@@ -8,6 +8,21 @@ export const containerStyles = StyleSheet.create({
     flex: 0,
     padding: 10,
   },
+  searchBar: {
+    //position: "absolute",
+    height: 40,
+    marginVertical: 0,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+    alignItems: "center",
+    textAlign: "center",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
+  infoCard: {
+    //position: "absolute",
+    marginVertical: 10,
+  },
   topAppbar: {
     //position: "absolute",
     left: 0,

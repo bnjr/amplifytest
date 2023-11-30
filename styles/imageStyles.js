@@ -4,3 +4,5 @@ export const imageStyles = StyleSheet.create({
 });
 
 export const iconSize = 22;
+export const imageSize = 22;
+export const avatarSize = 42;

@@ -11,6 +11,7 @@ export const textStyles = StyleSheet.create({
     height: 30,
   },
   buttonText: { fontSize: 12 },
+  searchText: { fontSize: 12 },
   todoName: {
     fontSize: textmid,
     alignSelf: "center",
