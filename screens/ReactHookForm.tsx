@@ -6,6 +6,8 @@ import { containerStyles } from "../styles/containerStyles";
 import { textStyles } from "../styles/textStyles";
 import { buttonStyles } from "../styles/buttonStyles";
 import { StatusBar } from "expo-status-bar";
+import YouTubeApp from "./Youtube";
+import MomentExamples from "../components/moment-samples";
 
 function ReactHookForm() {
   const { register, handleSubmit, setValue } = useForm();
@@ -68,8 +70,7 @@ function ReactHookForm() {
         style={buttonStyles.button}
       >
         <Text style={textStyles.buttonText}>Update Profile</Text>
-      </Button>     
-
+      </Button>
     </View>
   );
 }
