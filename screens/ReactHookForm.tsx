@@ -6,7 +6,6 @@ import { containerStyles } from "../styles/containerStyles";
 import { textStyles } from "../styles/textStyles";
 import { buttonStyles } from "../styles/buttonStyles";
 import { StatusBar } from "expo-status-bar";
-import Animated, { useSharedValue, withSpring } from "react-native-reanimated";
 
 function ReactHookForm() {
   const { register, handleSubmit, setValue } = useForm();
@@ -23,12 +22,7 @@ function ReactHookForm() {
     // Additional submit logic
   };
 
-   const width = useSharedValue(100);
 
-   const handlePress = () => {
-     width.value = withSpring(width.value + 50);
-  };
-  
   return (
     <View style={containerStyles.usablescreen}>
       <StatusBar />
@@ -74,16 +68,7 @@ function ReactHookForm() {
         style={buttonStyles.button}
       >
         <Text style={textStyles.buttonText}>Update Profile</Text>
-      </Button>
-
-      <Animated.View style={[containerStyles.redbox, { width }]} />
-      <Button
-        onPress={handlePress}
-        mode="elevated"
-        style={buttonStyles.button}
-      >
-        <Text style={textStyles.buttonText}>Animate</Text>
-      </Button>
+      </Button>     
 
     </View>
   );
