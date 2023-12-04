@@ -19,7 +19,10 @@ import { containerStyles } from "../styles/containerStyles";
 
 import { DataContext } from "../context/Context";
 
-export const RootLayout = ({ navigation }) => {
+//this is not working
+import { ConsoleLogger } from "@aws-amplify/core";
+
+export const ToDo = ({ navigation }) => {
   const { todos, addTodo, removeTodo } = useContext(DataContext);
   const [localTodos, setLocalTodos] = useState(
     todos.map((todo) => ({ ...todo, checked: false }))
@@ -36,18 +39,19 @@ export const RootLayout = ({ navigation }) => {
     //console.log("-----------killist", killList);
     //console.log("-----------localTodo");
     //localTodos.map((i) => {console.log(i.name, i.checked);})
-    ;
   }, [localTodos, killList]);
 
   const { top } = useSafeAreaInsets();
   const { bottom } = useSafeAreaInsets();
   const theme = useTheme();
 
+  const logger = new ConsoleLogger("foo");
   const initialState = { name: "", description: "" };
   const [formState, setFormState] = useState(initialState);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
+    logger.info("added");
   }
 
   const toggleChecked = (todoId) => {

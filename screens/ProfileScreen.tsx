@@ -3,6 +3,8 @@ import { Searchbar, Card, Avatar } from "react-native-paper";
 import { containerStyles } from "../styles/containerStyles";
 import { textStyles } from "../styles/textStyles";
 import { avatarSize } from "../styles/imageStyles";
+import Storage from 'aws-amplify/storage';
+import LeftAvatar from "../components/LeftAvatar";
 
 export const ProfileScreen = ({ navigation }) => {
 
@@ -22,7 +24,7 @@ export const ProfileScreen = ({ navigation }) => {
         >
           <Card.Title
             title="Dilesh Bansal"
-            left={LeftContent}
+            left={LeftAvatar}
           />
         </Card>
         <Card

@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { RootLayout } from "./RootLayout";
+import { RootLayout } from "./ToDo";
 import { DetailsScreen } from "./Details";
 const Stack = createNativeStackNavigator();
 export const NavigationProvider = () => {

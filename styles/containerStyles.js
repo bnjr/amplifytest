@@ -1,6 +1,14 @@
 import { StyleSheet } from "react-native";
 import { myTheme } from "./themes/grey";
 export const containerStyles = StyleSheet.create({
+  statusbar: {
+    backgroundColor: "#f0f0f0",
+    alignItems: "center",
+    textAlign: "center",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
+
   fullscreen: {
     flex: 1,
   },
@@ -48,6 +56,12 @@ export const containerStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "left",
     backgroundColor: myTheme.colors.primaryContainer,
+  },
+  redbox: {
+    height: 100,
+    backgroundColor: "#ff0000",
+    borderRadius: 20,
+    marginVertical: 64,
   },
   row: {
     flexDirection: "row",

@@ -1,0 +1,16 @@
+{
+  "resourceName": "s3amplifyteststorage6d2ddd9a",
+  "bucketName": "amplifytest-storage-6d2ddd9a",
+  "policyUUID": "7d21a01f",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "DELETE",
+    "READ",
+    "CREATE_AND_UPDATE"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

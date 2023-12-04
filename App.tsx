@@ -1,6 +1,7 @@
 import React from "react";
 import { Amplify } from "aws-amplify";
 import amplifyconfig from "./src/amplifyconfiguration.json";
+//import awsconfig from "./src/aws-exports";
 Amplify.configure(amplifyconfig);
 
 import { DataProvider } from "./context/Context";

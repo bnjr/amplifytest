@@ -17,6 +17,9 @@
       },
       "auth": {
         "amplifytestfbacc902": {}
+      },
+      "storage": {
+        "s3amplifyteststorage6d2ddd9a": {}
       }
     }
   }

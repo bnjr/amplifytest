@@ -3,26 +3,46 @@ import { Button, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { RootLayout } from "./RootLayout";
+import { ToDo } from "./ToDo";
 import { DetailsScreen } from "./Details";
 import { SettingsScreen } from "./Settings";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { myTheme } from "../styles/themes/grey";
 import { ProfileScreen } from "./ProfileScreen";
 
-const HomeStack = createNativeStackNavigator();
+import { ConsoleLogger } from "aws-amplify/utils";
+import ReactHookForm from "./ReactHookForm";
+import ImagePickerExample from "./ImagePicker";
+const logger = new ConsoleLogger("foo");
 
-function HomeStackScreen() {
+const FormStack = createNativeStackNavigator();
+function FormStackScreen() {
   return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={RootLayout} />
-      <HomeStack.Screen name="Details" component={DetailsScreen} />
-    </HomeStack.Navigator>
+    <FormStack.Navigator>
+      <FormStack.Screen name="Form" component={ReactHookForm} />
+    </FormStack.Navigator>
+  );
+}
+
+const StorageStack = createNativeStackNavigator();
+function StorageStackScreen() {
+  return (
+    <StorageStack.Navigator>
+      <FormStack.Screen name="Details" component={ImagePickerExample} />
+    </StorageStack.Navigator>
+  );
+}
+
+const HooksStack = createNativeStackNavigator();
+function HooksStackScreen() {
+  return (
+    <HooksStack.Navigator>
+      <HooksStack.Screen name="Home" component={ToDo} />
+    </HooksStack.Navigator>
   );
 }
 
 const SettingsStack = createNativeStackNavigator();
-
 function SettingsStackScreen() {
   return (
     <SettingsStack.Navigator>
@@ -43,19 +63,18 @@ export const BottomTabStackNavigator = () => {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             switch (route.name) {
-              case "Feed":
-                iconName = focused
-                  ? "ios-information-circle"
-                  : "ios-information-circle-outline";
+              case "Form":
+                iconName = focused ? "ios-create" : "ios-create-outline";
                 break;
-              case "Calls":
-                iconName = focused ? "call" : "call-outline";
+              case "Storage":
+                logger.info("call button pressed");
+                iconName = focused ? "ios-cloud" : "ios-cloud-outline";
                 break;
-              case "Chats":
-                iconName = focused ? "chatbox" : "chatbox-outline";
+              case "ToDo":
+                iconName = focused ? "ios-checkbox" : "ios-checkbox-outline";
                 break;
               case "Settings":
-                iconName = focused ? "ios-list" : "ios-list-outline";
+                iconName = focused ? "ios-settings" : "ios-settings-outline";
                 break;
               // Add additional cases for other routes as needed
               default:
@@ -70,9 +89,9 @@ export const BottomTabStackNavigator = () => {
           tabBarInactiveTintColor: myTheme.colors.tertiary,
         })}
       >
-        <Tab.Screen name="Feed" component={SettingsStackScreen} />
-        <Tab.Screen name="Calls" component={SettingsStackScreen} />
-        <Tab.Screen name="Chats" component={HomeStackScreen} />
+        <Tab.Screen name="Form" component={FormStackScreen} />
+        <Tab.Screen name="Storage" component={StorageStackScreen} />
+        <Tab.Screen name="ToDo" component={HooksStackScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>

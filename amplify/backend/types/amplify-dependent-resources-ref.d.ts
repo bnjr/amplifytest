@@ -16,5 +16,11 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolId": "string",
       "UserPoolName": "string"
     }
+  },
+  "storage": {
+    "s3amplifyteststorage6d2ddd9a": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }

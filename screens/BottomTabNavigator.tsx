@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { RootLayout } from "./RootLayout";
+import { RootLayout } from "./ToDo";
 import { DetailsScreen } from "./Details";
 import { NavigationContainer } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";

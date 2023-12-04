@@ -12,7 +12,7 @@ export const SettingsScreen = ({ navigation }) => {
 
   //card
   const LeftContent = (props) => (
-    <Avatar.Image size={avatarSize} source={require("../assets/images/dilesh.jpg")} />
+    <Avatar.Image size={avatarSize} source={require("../assets/images/shruti.jpg")} />
   );
 
   return (
@@ -20,7 +20,7 @@ export const SettingsScreen = ({ navigation }) => {
       <View style={containerStyles.usablescreen}>
         <Searchbar
           style={containerStyles.searchBar}
-          placeholder="Search"
+          placeholder=""
           onChangeText={onChangeSearch}
           value={searchQuery}
           inputStyle={textStyles.searchText}
