@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Avatar } from "react-native-paper";
 import { Amplify } from "aws-amplify";
 import  Storage from "aws-amplify";
-import amplifyconfig from "../src/amplifyconfiguration.json";
+import amplifyconfig from "../amplifyconfiguration.json";
 //import awsconfig from "./src/aws-exports";
 Amplify.configure({
   ...amplifyconfig,

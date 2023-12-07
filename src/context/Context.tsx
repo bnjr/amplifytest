@@ -6,8 +6,8 @@ import {
   withAuthenticator,
   useAuthenticator,
 } from "@aws-amplify/ui-react-native";
-import { createTodo, deleteTodo } from "../src/graphql/mutations";
-import { listTodos } from "../src/graphql/queries";
+import { createTodo, deleteTodo } from "../graphql/mutations";
+import { listTodos } from "../graphql/queries";
 
 const client = generateClient();
 

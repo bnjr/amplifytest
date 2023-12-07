@@ -4,11 +4,11 @@ import amplifyconfig from "./src/amplifyconfiguration.json";
 //import awsconfig from "./src/aws-exports";
 Amplify.configure(amplifyconfig);
 
-import { DataProvider } from "./context/Context";
-import ThemeProvider from "./styles/ThemeProvider";
-import { NavigationProvider } from "./screens/Navigation";
-import { BottomTabNavigator } from "./screens/BottomTabNavigator";
-import { BottomTabStackNavigator } from "./screens/BottomTabStackNavigator";
+import { DataProvider } from "./src/context/Context";
+import ThemeProvider from "./src/styles/ThemeProvider";
+import { NavigationProvider } from "./src/screens/Navigation";
+import { BottomTabNavigator } from "./src/screens/BottomTabNavigator";
+import { BottomTabStackNavigator } from "./src/screens/BottomTabStackNavigator";
 
 // retrieves only the current value of 'user' from 'useAuthenticator'
 // const userSelector = (context) => [context.user];
