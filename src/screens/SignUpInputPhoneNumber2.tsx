@@ -1,23 +1,30 @@
 import React, { useRef, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Button, TextInput } from "react-native-paper";
-import CountryPicker, { CountryCode } from "react-native-country-picker-modal";
+import CountryPicker from "react-native-country-picker-modal";
 
 import { containerStyles } from "../styles/containerStyles";
 import { textStyles } from "../styles/textStyles";
 import { buttonStyles } from "../styles/buttonStyles";
+import { parsePhoneNumberFromString, AsYouType } from "libphonenumber-js";
 
+type CountryCode = "US" | "CA" | "GB" | "IN";
 
-export const SignUpInputPhoneNumber = ({ navigation }) => {
+export const SignUpInputPhoneNumber2 = ({ navigation }) => {
   const [countryCode, setCountryCode] = useState<CountryCode>("US");
   const [country, setCountry] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [formattedValue, setFormattedValue] = useState("");
-
+  //const [formattedValue, setFormattedValue] = useState("");
+  const [formattedNumber, setFormattedNumber] = useState("");
+  const [isValidNumber, setIsValidNumber] = useState(false);
+  const phoneInput = useRef(null);
 
   const onSelect = (country: any) => {
     setCountryCode(country.cca2);
     setCountry(country);
+    setPhoneNumber("");
+    setFormattedNumber("");
+    setIsValidNumber(false);
   };
 
   const handleSignUp = () => {
@@ -26,6 +33,23 @@ export const SignUpInputPhoneNumber = ({ navigation }) => {
 
   const navigateToLogin = () => {
     // Navigation logic to go to the login screen
+  };
+
+  const handlePhoneNumberChange = (text) => {
+    const newNumber = new AsYouType(countryCode).input(text);
+    setPhoneNumber(text);
+    setFormattedNumber(newNumber);
+
+    // Parse the phone number from string
+    const parsedPhoneNumber = parsePhoneNumberFromString(
+      newNumber,
+      countryCode
+    );
+    if (parsedPhoneNumber) {
+      setIsValidNumber(parsedPhoneNumber.isValid());
+    } else {
+      setIsValidNumber(false);
+    }
   };
   return (
     <View style={containerStyles.usableScreenCentered}>
@@ -36,11 +60,13 @@ export const SignUpInputPhoneNumber = ({ navigation }) => {
       <View style={containerStyles.row}>
         <View style={containerStyles.borderBox}>
           <CountryPicker
-            {...{
-              countryCode,
-              onSelect,
-            }}
-            visible={false} // You can control the visibility of the picker with a state
+            countryCode={countryCode}
+            onSelect={onSelect}
+            withCallingCode
+            withFlag
+            withFilter
+            countryCodes={["US", "GB", "IN", "CA"]}
+            visible={false} // The visibility state should be managed to show the picker
           />
           {/* Display selected country code */}
           <TouchableOpacity
@@ -55,14 +81,16 @@ export const SignUpInputPhoneNumber = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
-
         <TextInput
-          style={textStyles.inputText}
-          onChangeText={setPhoneNumber}
+          style={[[textStyles.inputText], { width:200} ]}
+          onChangeText={handlePhoneNumberChange}
           value={phoneNumber}
-          placeholder="(999)-123-4567   "
+          placeholder="(999) 123-4567"
           keyboardType="phone-pad"
         />
+        {!isValidNumber && phoneNumber.length > 0 && (
+          <Text style={textStyles.errorText}> Invalid</Text>
+        )}
       </View>
       <View style={containerStyles.spacer}></View>
       <TouchableOpacity

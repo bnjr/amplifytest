@@ -29,6 +29,7 @@ export const textStyles = StyleSheet.create({
     marginBottom: 25,
   },
   displayText: { fontSize: 12, fontSize: textsm, height: 16, borderWidth: 0 },
+  errorText: { fontSize: 12, fontSize: textsm, height: 16, borderWidth: 0, color:"red"},
   urlText: {
     fontSize: 12,
     fontSize: textsm,

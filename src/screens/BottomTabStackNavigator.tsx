@@ -18,6 +18,7 @@ import { MembersList, MembersList2, MembersList3 } from "./Members";
 import { SignUp } from "./SignUp";
 import { SignUpInputPhoneNumber } from "./SignUpInputPhoneNumber";
 import { SignUpOTP } from "./SignUpOTP";
+import { SignUpInputPhoneNumber2 } from "./SignUpInputPhoneNumber2";
 const logger = new ConsoleLogger("foo");
 
 const FormStack = createNativeStackNavigator();
@@ -61,7 +62,7 @@ function SettingsStackScreen() {
       />
       <SettingsStack.Screen
         name="SignUpInputPhoneNumber"
-        component={SignUpInputPhoneNumber}
+        component={SignUpInputPhoneNumber2}
         options={{ title: "Sign up using Phone" }}
       />
       <SettingsStack.Screen
