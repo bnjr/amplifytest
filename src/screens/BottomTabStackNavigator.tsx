@@ -13,6 +13,11 @@ import { ProfileScreen } from "./ProfileScreen";
 import { ConsoleLogger } from "aws-amplify/utils";
 import ReactHookForm from "./ReactHookForm";
 import ImagePickerExample from "./ImagePicker";
+import { NotificationsScreen } from "./Notifications";
+import { MembersList, MembersList2, MembersList3 } from "./Members";
+import { SignUp } from "./SignUp";
+import { SignUpInputPhoneNumber } from "./SignUpInputPhoneNumber";
+import { SignUpOTP } from "./SignUpOTP";
 const logger = new ConsoleLogger("foo");
 
 const FormStack = createNativeStackNavigator();
@@ -28,7 +33,10 @@ const StorageStack = createNativeStackNavigator();
 function StorageStackScreen() {
   return (
     <StorageStack.Navigator>
-      <FormStack.Screen name="Details" component={ImagePickerExample} />
+      <FormStack.Screen
+        name="ImagePickerExample"
+        component={ImagePickerExample}
+      />
     </StorageStack.Navigator>
   );
 }
@@ -37,7 +45,7 @@ const HooksStack = createNativeStackNavigator();
 function HooksStackScreen() {
   return (
     <HooksStack.Navigator>
-      <HooksStack.Screen name="Home" component={ToDo} />
+      <HooksStack.Screen name="ToDo" component={ToDo} />
     </HooksStack.Navigator>
   );
 }
@@ -46,8 +54,28 @@ const SettingsStack = createNativeStackNavigator();
 function SettingsStackScreen() {
   return (
     <SettingsStack.Navigator>
+      <SettingsStack.Screen
+        name="Sign Up"
+        component={SignUp}
+        options={{ title: "Sign up" }}
+      />
+      <SettingsStack.Screen
+        name="SignUpInputPhoneNumber"
+        component={SignUpInputPhoneNumber}
+        options={{ title: "Sign up using Phone" }}
+      />
+      <SettingsStack.Screen
+        name="SignUpOTP"
+        component={SignUpOTP}
+        options={{ title: "Verify" }}
+      />
+
+      <SettingsStack.Screen
+        name="Notifications"
+        component={NotificationsScreen}
+      />
+      <SettingsStack.Screen name="Members" component={MembersList3} />
       <SettingsStack.Screen name="Settings" component={SettingsScreen} />
-      <SettingsStack.Screen name="Profile" component={ProfileScreen} />
     </SettingsStack.Navigator>
   );
 }
@@ -63,17 +91,17 @@ export const BottomTabStackNavigator = () => {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             switch (route.name) {
-              case "Form":
+              case "FormStack":
                 iconName = focused ? "ios-create" : "ios-create-outline";
                 break;
-              case "Storage":
+              case "StorageStack":
                 logger.info("call button pressed");
                 iconName = focused ? "ios-cloud" : "ios-cloud-outline";
                 break;
-              case "ToDo":
+              case "HookStack":
                 iconName = focused ? "ios-checkbox" : "ios-checkbox-outline";
                 break;
-              case "Settings":
+              case "SettingsStack":
                 iconName = focused ? "ios-settings" : "ios-settings-outline";
                 break;
               // Add additional cases for other routes as needed
@@ -89,10 +117,26 @@ export const BottomTabStackNavigator = () => {
           tabBarInactiveTintColor: myTheme.colors.tertiary,
         })}
       >
-        <Tab.Screen name="Form" component={FormStackScreen} />
-        <Tab.Screen name="Storage" component={StorageStackScreen} />
-        <Tab.Screen name="ToDo" component={HooksStackScreen} />
-        <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        <Tab.Screen
+          name="SettingsStack"
+          component={SettingsStackScreen}
+          options={{ title: "Login" }}
+        />
+        <Tab.Screen
+          name="FormStack"
+          component={FormStackScreen}
+          options={{ title: "Forms" }}
+        />
+        <Tab.Screen
+          name="StorageStack"
+          component={StorageStackScreen}
+          options={{ title: "Storage" }}
+        />
+        <Tab.Screen
+          name="HookStack"
+          component={HooksStackScreen}
+          options={{ title: "To Do" }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

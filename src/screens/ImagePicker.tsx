@@ -60,7 +60,7 @@ export default function ImagePickerExample() {
   const getUrlResult = async () => {
     try {
       const a = await getUrl({
-        key: 'aryaman.jpg',
+        key: 'dilesh.jpg',
       })
       //console.log("result:", result);
       console.log('signed URL: ', a.url.toString())
@@ -110,7 +110,7 @@ export default function ImagePickerExample() {
   const uploadImages = async () => {
     console.log("Image: ", image)
     const img = await fetchImageFromUri(image);
-    const filename = 'myImage.jpg' // Replace with the desired filename
+    const filename = 'aryaman.jpg' // Replace with the desired filename
 
     try {
       const result = await uploadData({

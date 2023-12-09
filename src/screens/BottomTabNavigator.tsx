@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { RootLayout } from "./ToDo";
+import { ToDo } from "./ToDo";
 import { DetailsScreen } from "./Details";
 import { NavigationContainer } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -15,7 +15,7 @@ export function BottomTabNavigator() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === "Home") {
+            if (route.name === "ToDo") {
               iconName = focused
                 ? "ios-information-circle"
                 : "ios-information-circle-outline";
@@ -30,12 +30,8 @@ export function BottomTabNavigator() {
           tabBarInactiveTintColor: myTheme.colors.tertiary,
         })}
       >
-        <Tab.Screen
-          name="Home"
-          component={RootLayout}
-          options={{ tabBarBadge: 3 }}
-        />
-        <Tab.Screen name="Settings" component={DetailsScreen} />
+        <Tab.Screen name="ToDo" component={ToDo} options={{ tabBarBadge: 3 }} />
+        <Tab.Screen name="Details" component={DetailsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
