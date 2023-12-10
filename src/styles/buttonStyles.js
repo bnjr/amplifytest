@@ -5,7 +5,7 @@ export const buttonStyles = StyleSheet.create({
     //padding: 1,
     margin: 5,
     height: 40,
-    width:200,
+    width: 200,
   },
   fab: {
     position: "absolute",

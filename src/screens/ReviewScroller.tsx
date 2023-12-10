@@ -31,7 +31,7 @@ const reviews: Review[] = [
     rating: 4,
   },
   {
-    id: "1",
+    id: "2",
     name: "Dilesh Bansal",
     review:
       "Its getting there !!! and some unnecesarily long string and a whole paragraph for testingand some unnecesarily long string and a whole paragraph for testing",
@@ -40,7 +40,7 @@ const reviews: Review[] = [
     rating: 3,
   },
   {
-    id: "1",
+    id: "3",
     name: "Aryaman Bansal",
     review: "Sucks !!!",
     date: "A day ago",
@@ -65,7 +65,7 @@ const ReviewScroller: React.FC = () => {
               key={index}
               name="star"
               size={24}
-              color="#FFD700"
+              color="#116611"
             />
           ))}
         </View>

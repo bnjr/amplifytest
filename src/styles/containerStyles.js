@@ -85,13 +85,13 @@ export const containerStyles = StyleSheet.create({
   reviewcard: {
     margin: 10,
     width: 300,
-    height: 200,
-    borderRadius: 10,
-    elevation: 3, // for shadow on Android
+    height: 150,
+    borderRadius: 20,
+    elevation: 15, // for shadow on Android
     shadowColor: "#000", // for shadow on iOS
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOffset: { width: 12, height: 14 },
+    shadowOpacity: 0.9, //iOs only
+    shadowRadius: 3, //iOs only
   },
   separator: {
     height: 1,
