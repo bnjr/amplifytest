@@ -1,32 +1,27 @@
-import React, { useState, useRef } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import { containerStyles } from "../styles/containerStyles";
-import { textStyles } from "../styles/textStyles";
+import React, { useState, useRef } from 'react'
+import { View, TouchableOpacity } from 'react-native'
+import { containerStyles } from '../styles/containerStyles'
+import { textStyles } from '../styles/textStyles'
+import { TextInput, Text } from 'react-native-paper'
 
 export const SignUpOTP: React.FC = () => {
-  const [OTP, setOTP] = useState(new Array(6).fill(""));
-  const textInputRefs = useRef<Array<TextInput | null>>([]);
+  const [OTP, setOTP] = useState(new Array(6).fill(''))
+  const textInputRefs = useRef<(typeof TextInput | null)[]>([])
 
   const handleOTPChange = (text: string, index: number) => {
-    const newOTP = [...OTP];
-    newOTP[index] = text;
-    setOTP(newOTP);
+    const newOTP = [...OTP]
+    newOTP[index] = text
+    setOTP(newOTP)
 
     // Auto-focus to next TextInput after a digit is entered
     if (text && index < 5) {
-      textInputRefs.current[index + 1]?.focus();
+      (textInputRefs.current[index + 1] as any)?.focus()
     }
-  };
+  }
 
   const handleResendOTP = () => {
     // Logic to resend OTP
-  };
+  }
 
   return (
     <View style={containerStyles.usableScreenCentered}>
@@ -43,7 +38,7 @@ export const SignUpOTP: React.FC = () => {
             value={digit}
             onChangeText={(text) => handleOTPChange(text, index)}
             maxLength={1}
-            keyboardType="numeric"
+            keyboardType='numeric'
             ref={(ref) => (textInputRefs.current[index] = ref)}
           />
         ))}
@@ -54,5 +49,5 @@ export const SignUpOTP: React.FC = () => {
         <Text style={textStyles.urlText}>Resend</Text>
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}

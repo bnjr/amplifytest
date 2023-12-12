@@ -57,7 +57,7 @@ export const textStyles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
     borderRadius: 5,
-    textAlign: "center",
+    textAlign: "left",
     fontSize: 20,
     marginHorizontal: 5,
   },

@@ -1,32 +1,30 @@
-import React, { useRef, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Button, TextInput } from "react-native-paper";
-import CountryPicker, { CountryCode } from "react-native-country-picker-modal";
+import React, { useState } from 'react'
+import { View, TouchableOpacity } from 'react-native'
+import { Button, Text, TextInput } from 'react-native-paper'
+import CountryPicker, { CountryCode } from 'react-native-country-picker-modal'
 
-import { containerStyles } from "../styles/containerStyles";
-import { textStyles } from "../styles/textStyles";
-import { buttonStyles } from "../styles/buttonStyles";
-
+import { containerStyles } from '../styles/containerStyles'
+import { textStyles } from '../styles/textStyles'
+import { buttonStyles } from '../styles/buttonStyles'
 
 export const SignUpInputPhoneNumber = ({ navigation }) => {
-  const [countryCode, setCountryCode] = useState<CountryCode>("US");
-  const [country, setCountry] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [formattedValue, setFormattedValue] = useState("");
-
+  const [countryCode, setCountryCode] = useState<CountryCode>('US')
+  const [country, setCountry] = useState(null)
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [formattedValue, setFormattedValue] = useState('')
 
   const onSelect = (country: any) => {
-    setCountryCode(country.cca2);
-    setCountry(country);
-  };
+    setCountryCode(country.cca2)
+    setCountry(country)
+  }
 
   const handleSignUp = () => {
     // Handle the sign-up process with phoneNumber and country data
-  };
+  }
 
   const navigateToLogin = () => {
     // Navigation logic to go to the login screen
-  };
+  }
   return (
     <View style={containerStyles.usableScreenCentered}>
       <Text style={textStyles.headingText}>Enter your phone number</Text>
@@ -50,7 +48,7 @@ export const SignUpInputPhoneNumber = ({ navigation }) => {
           >
             <TextInput
               style={textStyles.inputText}
-              placeholder={country ? `+${country.callingCode}` : ""}
+              placeholder={country ? `+${country.callingCode}` : ''}
               disabled
             />
           </TouchableOpacity>
@@ -60,8 +58,8 @@ export const SignUpInputPhoneNumber = ({ navigation }) => {
           style={textStyles.inputText}
           onChangeText={setPhoneNumber}
           value={phoneNumber}
-          placeholder="(999)-123-4567   "
-          keyboardType="phone-pad"
+          placeholder='(999)-123-4567   '
+          keyboardType='phone-pad'
         />
       </View>
       <View style={containerStyles.spacer}></View>
@@ -70,19 +68,19 @@ export const SignUpInputPhoneNumber = ({ navigation }) => {
         style={textStyles.displayText}
       >
         <Text style={textStyles.displayText}>
-          Already have an account?{" "}
+          Already have an account?{' '}
           <Text style={textStyles.urlText}>Log in</Text>
         </Text>
       </TouchableOpacity>
       <View style={containerStyles.spacer}></View>
       <Button
-        mode="contained"
+        mode='contained'
         //onPress={handleSignUp}
-        onPress={() => navigation.navigate("SignUpOTP")}
+        onPress={() => navigation.navigate('SignUpOTP')}
         style={buttonStyles.button}
       >
         Sign up
       </Button>
     </View>
-  );
-};
+  )
+}

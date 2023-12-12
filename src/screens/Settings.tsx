@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, SafeAreaView} from "react-native";
-import { Avatar, Card, Button, Searchbar } from "react-native-paper";
+import { View, SafeAreaView} from "react-native";
+import { Avatar, Card, Searchbar } from "react-native-paper";
 import { containerStyles } from "../styles/containerStyles";
-import { avatarSize, imageSize } from "../styles/imageStyles";
+import { avatarSize } from "../styles/imageStyles";
 import { textStyles } from "../styles/textStyles";
 
 export const SettingsScreen = ({ navigation }) => {

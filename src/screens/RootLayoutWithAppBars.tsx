@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import { StyleSheet, View, Pressable, SafeAreaView } from "react-native";
+import React, { useState, useContext } from "react";
+import { View, SafeAreaView } from "react-native";
 import {
   Text,
   TextInput,
@@ -8,11 +8,10 @@ import {
   FAB,
   useTheme,
   Avatar,
-  Banner,
 } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { textStyles } from "../styles/textStyles";
-import { buttonStyles, fabHeight } from "../styles/buttonStyles";
+import { buttonStyles } from "../styles/buttonStyles";
 import { imageStyles, iconSize } from "../styles/imageStyles";
 import { containerStyles } from "../styles/containerStyles";
 

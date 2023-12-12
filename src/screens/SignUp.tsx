@@ -1,20 +1,16 @@
 import React from "react";
 import {
   SafeAreaView,
-  StyleSheet,
   View,
-  Text,
   TouchableOpacity,
 } from "react-native";
-import { Button } from "react-native-paper";
-import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Button, Text } from "react-native-paper";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { Searchbar, Card, Avatar } from "react-native-paper";
+import { Avatar } from "react-native-paper";
 import { containerStyles } from "../styles/containerStyles";
 import { textStyles } from "../styles/textStyles";
 import { avatarSize } from "../styles/imageStyles";
-import Storage from "aws-amplify/storage";
-import LeftAvatar from "../components/LeftAvatar";
 import { buttonStyles } from "../styles/buttonStyles";
 import ReviewScroller from "./ReviewScroller";
 
